@@ -7,12 +7,15 @@ export default function Home({navigation}) {
             <Text style={styles.headerText}>Welcome To POS App</Text>
             <Pressable 
                 style={styles.button}
-                onPress={()=> navigation.navigate('Scan')}
-                >
-                <Text style={styles.buttonText}>Scan</Text>
+                onPress={()=> navigation.navigate('Sell')}
+             >
+                <Text style={styles.buttonText}>Sell</Text>
             </Pressable>
-            <Pressable style={styles.button}>
-                <Text style={styles.buttonText}>Register</Text>
+            <Pressable 
+              style={styles.button}
+              onPress = {() => navigation.navigate('ScanB')}
+            >
+                <Text style={styles.buttonText}>Scan</Text>
             </Pressable>
         </ScrollView>
     )

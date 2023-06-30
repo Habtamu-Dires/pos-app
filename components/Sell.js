@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, StyleSheet, } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Button from './Button';
 
-export default function Scan ({navigation}) {
+const items = [];
+
+export default function ScanB ({navigation}) {
 
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(true);
-
-    //const useNavigation = useNavigation();
     
     useEffect(() => {
         (async () => {
@@ -21,7 +21,8 @@ export default function Scan ({navigation}) {
     const handleBarCodeScanned = ({ type, data }) => {
             setScanned(true);
             //alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-            navigation.navigate('Item', {data});
+            alert(`Bar code with data ${data} has been scanned!`);
+            items.push(data);          
     };
 
     if (hasPermission === null) {
@@ -40,9 +41,15 @@ export default function Scan ({navigation}) {
                 style={StyleSheet.absoluteFillObject}
             />           
         </View>
-        <View>
+        <View style={styles.button_container}>
             <Button title={'Tap to Scan'} icon={'camera'} color={'orange'} onPress={() => 
-            setScanned(false)} /> 
+                setScanned(false)} />
+            <Button title={'Sell'} icon={'camera'} color={'orange'} onPress={() => {
+            
+                    navigation.navigate('Cart', {items}) 
+               }                           
+            } 
+            />
         </View>
         </>        
     );
@@ -53,5 +60,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-
-})
+    button_container:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 50
+    }
+});

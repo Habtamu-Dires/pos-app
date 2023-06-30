@@ -7,7 +7,9 @@ import { StyleSheet } from "react-native";
 
 import Home from "./HomeScreen";
 import Scan from "./Scan";
-
+import Cart from "./Cart";
+import Item from "./Item";
+import Sell from "./Sell";
 
 const Drawer = createDrawerNavigator();
 
@@ -30,7 +32,10 @@ export default function DrawerNavigation({navigation}) {
         <View style={styles.container}>
             <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props}/>} >
                 <Drawer.Screen name="Home" component={Home}/>
-                <Drawer.Screen name="Scan" component={Scan} />
+                <Drawer.Screen name="Sell" component={Sell}/>
+                <Drawer.Screen name="Cart" component={Cart}/>
+                <Drawer.Screen name="ScanB" component={Scan}/>
+                <Drawer.Screen name="Item" component={Item}/>               
             </Drawer.Navigator>
         </View>
     )
